@@ -1,0 +1,16 @@
+se limitar no enunciado do problema
+
+todos os campos são obrigatorios
+
+campeão:
+1. quem tem mais pontos
+2. verifica a quantidade de vitorias
+3. verifica saldo de gols
+
+mostrar campeão por pontos
+caso empate -> saldo vitórias
+caso empate -> saldo gols ( gols marcados - gols sofridos)
+
+numero de jogo em casa = numero de jogo fora
+
+A x B e B x A
