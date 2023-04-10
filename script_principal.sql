@@ -131,10 +131,13 @@ BEGIN
     ((SELECT SUM(pontoCasa) FROM Jogo WHERE timeCasa = t.nome) + 
      (SELECT SUM(pontoFora) FROM Jogo WHERE timeFora = t.nome)) AS total_de_pontos,
 
+     ((SELECT COUNT(*) FROM Jogo WHERE timeCasa = t.nome AND golCasa > golFora) + 
+      (SELECT COUNT(*) FROM Jogo WHERE timeFora = t.nome AND golFora > golCasa)) AS numero_vitorias,
+
     ((SELECT (SUM(golCasa) - SUM(golFora)) FROM Jogo WHERE timeCasa = t.nome) + 
      (SELECT (SUM(golFora) - SUM(golCasa)) FROM Jogo WHERE timeFora = t.nome)) AS saldo_de_gols
-FROM [Time] t
-ORDER BY total_de_pontos DESC, saldo_de_gols DESC;
+    FROM [Time] t
+    ORDER BY total_de_pontos DESC, numero_vitorias DESC, saldo_de_gols DESC;
 END;
 GO
 
@@ -181,7 +184,7 @@ BEGIN
 END;
 GO
 
-EXEC.MostrarClassificao 1;
+EXEC.MostrarClassificao 2;
 GO
 
 EXEC.TimeComMaisGols;
